@@ -11,8 +11,11 @@ RequestHelper.prototype.post = function (payload) {
   return fetch(this.url, {
     method: 'POST',
     body: JSON.stringify(payload),
-    headers: {'Constent-Type': 'application/json'}
+    headers: { 'Content-Type': 'application/json'}
   })
     .then((response) => response.json());
-}
+};
+
+
+
 module.exports = RequestHelper;

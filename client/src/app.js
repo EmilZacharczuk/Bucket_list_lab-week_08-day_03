@@ -14,6 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const url = 'http://localhost:3000/api/activities';
   const activities = new Activities(url);
-  // activities.bindEvents();
+  activities.bindEvents();
   activities.getData();
 });
