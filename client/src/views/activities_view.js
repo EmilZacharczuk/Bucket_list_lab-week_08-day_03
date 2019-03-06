@@ -35,8 +35,8 @@ ActivityView.prototype.createDetail = function (label, text) {
 ActivityView.prototype.createDeleteButton = function (activityId) {
   const button = document.createElement('button');
   button.classList.add('delete-btn');
+  button.textContent = 'Delete'
   button.value = activityId;
-
   button.addEventListener('click', (evt) => {
     PubSub.publish('ActivityView:activity-delete-clicked', evt.target.value);
   });
