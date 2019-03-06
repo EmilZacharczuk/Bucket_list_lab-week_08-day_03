@@ -7,6 +7,10 @@ const Activities = function (url) {
 }
 
 Activities.prototype.bindEvents = function () {
+  PubSub.subscribe('ActivityView:activity-delete-clicked', (evt) => {
+    this.deleteActivity(evt.detail);
+  });
+
   PubSub.subscribe('ActivityView:Activity-save-submit', (evt) => {
     console.log(evt.detail);
     this.postActivity(evt.detail);
@@ -24,11 +28,17 @@ Activities.prototype.getData = function () {
 Activities.prototype.postActivity = function (activity) {
   this.request.post(activity)
     .then((activities) => {
-      console.log(activities);
       PubSub.publish('Activities:data-loaded', activities);
     })
     .catch(console.error);
-    console.log(activity)
+};
+
+Activities.prototype.deleteActivity = function (activityId) {
+  this.request.delete(activityId)
+    .then((activities) => {
+      PubSub.publish('Activities:data-loaded', activities);
+    })
+    .catch(console.error);
 };
 
 module.exports = Activities;

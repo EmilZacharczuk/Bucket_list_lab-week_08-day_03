@@ -14,8 +14,8 @@ ActivityView.prototype.render = function (activity) {
   const description = this.createDetail('Description', activity.description);
   activityContainer.appendChild(description);
 
-  // const deleteButton = this.createDeleteButton(activity._id);
-  // activityContainer.appendChild(deleteButton);
+  const deleteButton = this.createDeleteButton(activity._id);
+  activityContainer.appendChild(deleteButton);
 
   this.container.appendChild(activityContainer);
 };
@@ -32,16 +32,16 @@ ActivityView.prototype.createDetail = function (label, text) {
   return detail;
 };
 
-// ActivityView.prototype.createDeleteButton = function (activityId) {
-//   const button = document.createElement('button');
-//   button.classList.add('delete-btn');
-//   button.value = activityId;
-//
-//   button.addEventListener('click', (evt) => {
-//     PubSub.publish('ActivityView:activity-delete-clicked', evt.target.value);
-//   });
-//
-//   return button;
-// };
+ActivityView.prototype.createDeleteButton = function (activityId) {
+  const button = document.createElement('button');
+  button.classList.add('delete-btn');
+  button.value = activityId;
+
+  button.addEventListener('click', (evt) => {
+    PubSub.publish('ActivityView:activity-delete-clicked', evt.target.value);
+  });
+
+  return button;
+};
 
 module.exports = ActivityView;
